@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: github-private-repo-files
+  namespace: github-private-repo
+spec:
+  selector:
+      matchLabels:
+        run: github-private-repo-files
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: github-private-repo-files
+    spec:
+      containers:
+      - name: github-private-repo-files-1
+        image: pchahal24/github-private-repo-files:latest
+        imagePullPolicy: Always
+        ports:
+          - name: port-5000
+            containerPort: 5000
+            protocol: TCP
+        resources:
+          limits:
+            cpu: 50m
+            memory: 200Mi
+          requests:
+            cpu: 25m
+            memory: 100Mi
+        env:
+        - name: AAD_IDENTITY_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: pc-identity
+              key: key
+        - name: AAD_IDENTITY_TENANT
+          valueFrom:
+            secretKeyRef:
+              name: pc-identity
+              key: tenant
+        - name: AAD_IDENTITY_CLIENTID
+          valueFrom:
+            secretKeyRef:
+              name: pc-identity
+              key: clientId
