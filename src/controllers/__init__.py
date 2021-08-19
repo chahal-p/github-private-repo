@@ -7,7 +7,7 @@ import http
 class GitHubFileController(Controller):
     
     URL_TEMPLATE = 'https://raw.githubusercontent.com/{owner}/{repo}/master/{path}'
-    RESPONSE_HEADER_KEYS = ['Content-Type', 'Cache-Control', 'Connection', 'Expires']
+    RESPONSE_HEADER_KEYS = ['Content-Type', 'Connection']
 
     def __init__(self, logger, access_token):
         super().__init__(logger)
