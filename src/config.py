@@ -1,4 +1,4 @@
 RepoOwner = "parveenchahal"
 KeyVaultName = "pckv1"
 GitHubSecretName = "github-token"
-WhitelistedRepo = ['coding-notes']
+WhitelistedRepo = ['coding-notes', 'DSAlgo']
