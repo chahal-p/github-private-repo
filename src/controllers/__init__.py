@@ -7,11 +7,21 @@ import http
 class GitHubFileController(Controller):
     
     URL_TEMPLATE = 'https://raw.githubusercontent.com/{owner}/{repo}/master/{path}'
+    RESPONSE_HEADER_KEYS = ['Content-Type', 'Cache-Control', 'Connection', 'Expires']
 
     def __init__(self, logger, access_token):
         super().__init__(logger)
         self._access_token = access_token
     
+    def _filter_response_headers(self, headers):
+        res = {}
+        for key in self.RESPONSE_HEADER_KEYS:
+            try:
+                res[key] = headers[key]
+            except KeyError:
+                pass
+        return res
+
     def get(self, repo, path):
         if repo not in config.WhitelistedRepo:
             return UnauthorizedResponse(f'{repo} is not accessible.')
@@ -21,7 +31,5 @@ class GitHubFileController(Controller):
             return NotFoundResponse()
         if res.status_code != http.HTTPStatus.OK:
             return InternalServerErrorResponse()
-        return Response(res.content, headers={
-            'Content-Type': res.headers['Content-Type'],
-            'Cache-Control': 'max-age=300'
-        })
+        headers = self._filter_response_headers(res.headers)
+        return Response(res.content, headers=headers)
