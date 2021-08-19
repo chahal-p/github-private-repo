@@ -1,4 +1,3 @@
 Flask
 Flask-RESTful
-pynacl
-PyGithub
+PyGithub==1.54
