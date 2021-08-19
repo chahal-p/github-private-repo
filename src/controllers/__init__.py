@@ -23,4 +23,4 @@ class GitHubFileController(Controller):
                 return NotFoundResponse()
             return InternalServerErrorResponse()
         content = string_to_bytes(f.content)
-        return Response(decode_base64(content))
+        return Response(decode_base64(content), content_type='image/jpeg')

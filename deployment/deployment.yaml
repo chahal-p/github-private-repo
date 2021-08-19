@@ -7,7 +7,7 @@ spec:
   selector:
       matchLabels:
         run: github-private-repo-files
-  replicas: 1
+  replicas: 3
   template:
     metadata:
       labels:
@@ -23,8 +23,8 @@ spec:
             protocol: TCP
         resources:
           limits:
-            cpu: 50m
-            memory: 200Mi
+            cpu: 100m
+            memory: 300Mi
           requests:
             cpu: 25m
             memory: 100Mi
