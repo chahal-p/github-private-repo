@@ -7,7 +7,7 @@ spec:
   selector:
       matchLabels:
         run: github-private-repo-files
-  replicas: 3
+  replicas: 2
   template:
     metadata:
       labels:
