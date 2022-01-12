@@ -11,6 +11,6 @@ RUN python -m pip install --upgrade pip
 RUN pip install -r python-dependencies.txt
 
 EXPOSE 5000/tcp
-RUN export FLASK_APP=session.app.py
+RUN export FLASK_APP=app.py
 RUN export FLASK_ENV=production
 CMD ["flask", "run", "-h", "0.0.0.0", "-p", "5000"]
