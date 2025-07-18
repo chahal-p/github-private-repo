@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: github-private-repo-files-1
-        image: pchahal24/github-private-repo-files:latest
+        image: pchahal24/github-private-repo-files:2025-07-17
         imagePullPolicy: Always
         ports:
           - name: port-5000

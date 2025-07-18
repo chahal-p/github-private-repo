@@ -5,7 +5,7 @@ docker-build:
 	cp ./Dockerfile build/
 	cp ./python-dependencies.txt build/
 	find . | grep -E "(__pycache__|\.pyc|\.pyo)" | xargs rm -rf
-	sudo docker build ./build -t ${IMG}
+	docker build ./build -t ${IMG}
 
 docker-push:
-	sudo docker push ${IMG}
+	docker push ${IMG}
